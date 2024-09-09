@@ -1,0 +1,31 @@
+.side-menu {
+    display: none;
+    position: fixed;
+    top: 0px;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #006d77;
+    color: #ddd;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+}
+
+.side-menu.visible {
+    display: block;
+    transform: translateX(0);
+}
+
+.side-menu a {
+    color: #ddd;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.side-menu a:hover {
+    text-decoration: underline;
+}

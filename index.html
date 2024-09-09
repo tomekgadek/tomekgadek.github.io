@@ -3,35 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strona w budowie</title>
-    <style>
-        body {
-            background-color: #f0f0f0;
-            color: #333;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.2em;
-            color: #666;
-        }
-    </style>
+
+    <link rel="icon" type="image/png" href="./img/unittest-logo.png">
+    
+    <title>UnitTest | Tomasz Gądek</title>
+    
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/side-menu.css">
+    <link rel="stylesheet" href="./css/content-course.css">
+    <link rel="stylesheet" href="./css/footer.css">
 </head>
 <body>
-    <div class="container">
-        <h1>tomekgadek.github.io</h1>
-        <p>Strona w budowie</p>
-    </div>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="./img/unittest-logo.png" alt="UnitTest Tomasz Gądek" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <nav class="side-menu" id="side-menu">
+            <a href="/">Home</a>
+            <!--<a href="#">Regulamin</a>
+            <a href="#">Polityka prywatności</a>
+            <a href="#">Kontakt</a>-->
+        </nav>
+    </header>
+
+    <section class="title">
+        <h1>UnitTest Tomasz Gądek</h1>
+        <p>Jest tutaj sporo niedziałającego kodu, ale może znajdziesz coś dla siebie 🤭</p>
+    </section>
+
+    <main class="course-grid">
+        <div>
+            <h3>Algorytmy i Struktury Danych</h3>
+            <p>Laboratorium</p>
+        </div>
+        <div>
+            <h3>Projektowanie Systemów</h3>
+            <p>Projekt</p>
+        </div>
+        <div>
+            <h3>Sieci Komputerowe</h3>
+            <p>Laboratorium</p>
+        </div>
+        <div>
+            <h3>Programowanie Obiektowe</h3>
+            <p>Laboratorium</p>
+        </div>
+        <div>
+            <h3>Bazy Danych</h3>
+            <p>Projekt</p>
+        </div>
+        <div>
+            <h3>Systemy Operacyjne</h3>
+            <p>Laboratorium</p>
+        </div>
+        <div>
+            <h3>Inżynieria Oprogramowania</h3>
+            <p>Projekt</p>
+        </div>
+        <div>
+            <h3>Wprowadzenie do AI</h3>
+            <p>Laboratorium</p>
+        </div>
+        <div>
+            <h3>Grafika Komputerowa</h3>
+            <p>Projekt</p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">0000</span> UnitTest Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="./js/menu.js" type="text/javascript"></script>
+    <script src="./js/current-year-initializer.js" type="text/javascript"></script>
 </body>
 </html>
