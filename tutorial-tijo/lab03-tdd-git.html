@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Gądek">
+    <meta name="description" content="Laboratorium 03: TDD, Git">
+
+    <link rel="icon" type="image/png" href="../img/unittest-logo.png">
+
+    <title>UnitTest | TiJO Lab03</title>
+
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/side-menu.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/content.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="../img/unittest-logo.png" alt="UnitTest Tomasz Gądek" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="side-menu" id="side-menu">
+            <nav class="menu">
+                <a href="lab03-tdd-git.html">Lab 03: TDD, Git</a>
+                <a href="mailto:t_gadek@atar.edu.pl">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title">
+        <h1>Testowanie i Jakość Oprogramowania</h1>
+        <p><strong>Laboratorium 03</strong>: TDD, Git</p>
+    </section>
+
+    <main class="content">
+        <div class="content-details">
+
+        <h1>System zarządzania AT</h1>
+        <p>
+            Twoim celem będzie zaprojektowanie interfejsu dla aplikacji zarządzającej studentami 
+            przy użyciu techniki TDD (<em>ang. Test-Driven Development</em>). Aplikacja powinna umożliwiać 
+            dodawanie, aktualizowanie, usuwanie studentów, wprowadzanie ocen z przedmiotów oraz 
+            obliczanie średniej ocen z przedmiotu. Ponadto, wymagane jest użycie systemu kontroli 
+            wersji Git, gdzie po każdym cyklu TDD powinien być wykonany commit do repozytorium 
+            zgodnie z ustaloną konwencją.
+        </p>
+
+        <h2>Wymagania funkcjonalne</h2>
+
+        <p>Dokumentacja w formie interfejsu</p>
+
+<pre class="code"><code id="code" class="language-java">/**
+ * Interfejs zarządzania studentami i ocenami.
+ * Zawiera metody do dodawania, aktualizowania, usuwania 
+ * studentów oraz zarządzania ich ocenami.
+ */
+public interface StudentManagement {
+   
+    /**
+     * Dodaje nowego studenta do bazy danych.
+     * 
+     * @param name      Imię studenta.
+     * @param surname   Nazwisko studenta.
+     * @param studentId Unikalny identyfikator studenta.
+     * @return true, jeśli dodanie zakończyło się sukcesem, false w przeciwnym razie.
+     */
+    boolean addStudent(String name, String surname, String studentId);      
+    /**
+     * Aktualizuje dane istniejącego studenta na podstawie jego identyfikatora.
+     * 
+     * @param name      Imię studenta.
+     * @param surname   Nazwisko studenta.
+     * @param studentId Unikalny identyfikator studenta.
+     * @return true, jeśli aktualizacja zakończyła się sukcesem, false w przeciwnym razie.
+     */
+    boolean updateStudent(String name, String surname, String studentId);       
+    /**
+     * Usuwa studenta z bazy danych na podstawie jego identyfikatora.
+     * 
+     * @param studentId Unikalny identyfikator studenta.
+     * @return true, jeśli usunięcie zakończyło się sukcesem, false w przeciwnym razie.
+     */
+    boolean removeStudent(String studentId);        
+    /**
+     * Dodaje ocenę z danego przedmiotu dla określonego studenta.
+     * 
+     * @param studentId Unikalny identyfikator studenta.
+     * @param subject   Nazwa przedmiotu.
+     * @param grade     Ocena.
+     * @return true, jeśli dodanie oceny zakończyło się sukcesem, false w przeciwnym razie.
+     */
+    boolean addGrade(String studentId, String subject, double grade);       
+    /**
+     * Oblicza średnią ocen z danego przedmiotu dla wszystkich studentów.
+     * 
+     * @param subject Nazwa przedmiotu.
+     * @return Średnia ocen z przedmiotu jako liczba zmiennoprzecinkowa.
+     */
+    double calculateAverageGrade(String subject);
+}
+</code></pre> 
+
+        <h2>Wymagania dotyczące procesu TDD</h2>
+
+        <p>
+            Do implementacji powyższych metod należy wykorzystać cykl TDD. Cykl TDD powinien 
+            składać się z trzech kroków: Red, Green, Refactor (RGR). Po każdym cyklu RGR 
+            należy wykonać commit do repozytorium Git. Commity powinny być opisane 
+            zgodnie z ustaloną konwencją.
+        </p>
+
+        <ul>
+            <li>"RGR_1: Implementacja metody odpowiedzialnej za dodanie studenta".</li>
+            <li>"RGR_2: Implementacja metody odpowiedzialnej za aktualizację danych studenta".</li>
+            <li>"RGR_3: Implementacja metody odpowiedzialnej za usunięcie studenta".</li>
+            <li>"RGR_4: Implementacja metody dodawania oceny z przedmiotu".</li>
+        </ul>
+
+        <h1>Czy wiesz, że...</h1>
+
+        <p>
+            YAGNI (<em>ang. You Aren't Gonna Need It</em>) to zasada w programowaniu, która 
+            radzi programistom nie dodawać funkcjonalności, abstrakcji lub optymalizacji do 
+            kodu, dopóki nie są one faktycznie potrzebne. Zasada ta kieruje uwagę na aktualne 
+            wymagania i unika zbędnej złożoności oraz kosztów związanych z dodawaniem 
+            niepotrzebnych funkcji.
+        </p>
+
+    </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">0000</span> UnitTest Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="../js/menu.js" type="text/javascript"></script>
+    <script src="../js/encode-source-code.js" type="text/javascript"></script>
+</body>
+</html>
