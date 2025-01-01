@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Gądek">
+    <meta name="description" content="Laboratorium 02: ArrangeActAssert, TDD">
+
+    <link rel="icon" type="image/png" href="../img/unittest-logo.png">
+
+    <title>UnitTest | TiJO Lab02</title>
+
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/side-menu.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/content.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="../img/unittest-logo.png" alt="UnitTest Tomasz Gądek" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="side-menu" id="side-menu">
+            <nav class="menu">
+                <a href="lab02-arrange-act-assert-tdd.html">Lab 02: ArrangeActAssert, TDD</a>
+                <a href="mailto:t_gadek@atar.edu.pl">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title">
+        <h1>Testowanie i Jakość Oprogramowania</h1>
+        <p><strong>Laboratorium 02</strong>: ArrangeActAssert, TDD</p>
+    </section>
+
+    <main class="content">
+        <div class="content-details">
+
+        <h1>Arrange-Act-Assert</h1>
+        <p>
+            <strong>AAA</strong> (<em>ang. Arrange-Act-Assert</em>) to wzorzec organizacji testów jednostkowych, który polega na 
+            podziale testu na trzy główne etapy: przygotowanie (Arrange), wykonanie akcji (Act) i 
+            weryfikację wyników (Assert). W fazie przygotowania ustalamy warunki początkowe i 
+            inicjalizujemy niezbędne zasoby, w fazie wykonania dokonujemy konkretnych działań lub 
+            operacji, które chcemy przetestować, a w fazie weryfikacji sprawdzamy, czy rezultaty 
+            są zgodne z oczekiwaniami. Ten sposób organizacji testów pozwala na czytelne i modułowe 
+            pisanie testów jednostkowych oraz ułatwia identyfikację i debugowanie ewentualnych błędów.
+        </p>
+        <p>
+            Zastosowanie Arrange-Act-Assert w praktyce:
+        </p>
+<pre class="code"><code id="code" class="language-java">class MathOperation {
+    static int add(int first, int second) {
+        return first + second;
+    }
+ }
+ 
+ class MathOperationTests {
+    void testAddition() {
+        // Arrange
+        int firstNumber = 1;
+        int secondNumber = 2;
+ 
+        // Act
+        int result = MathOperation.add(firstNumber, secondNumber);
+ 
+        // Assert
+        assert result == 3 : "add(1, 2) should return 3?";
+    }
+ }
+ 
+ class UnitTests {
+ 
+    public static void main(String[] args) {
+        new MathOperationTests().testAddition();
+    }
+ }</code></pre>
+
+    <h2>Zadanie</h2>
+    
+    <p>
+        Podziel swój kod na kod produkcyjny i testowy (klasa produkcyjna i testowa). Asercje powinny 
+        znaleźć się w oddzielnych metodach oraz powinny być zapisane zgodnie z 
+        konwencją <strong>Arrange-Act-Assert</strong>.
+    </p>
+    <p>
+        Zaimplementuj funkcję Boolean isPrime(Integer digit), która zweryfikuje, czy podana 
+        liczba to <a href="https://pl.wikipedia.org/wiki/Liczby_pierwsze">liczba pierwsza</a>. 
+        Zaproponuj dobre testy.
+    </p>
+
+    <table>
+        <thead>
+            <tr><th>Wejście</th><th>Wyjście</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>null</td><td>null</td></tr>
+            <tr><td>-10</td><td>false</td></tr>
+            <tr><td>0</td><td>false</td></tr>
+            <tr><td>1</td><td>false</td></tr>
+            <tr><td>2</td><td>true</td></tr>
+            <tr><td>13</td><td>true</td></tr>
+            <tr><td>97</td><td>true</td></tr>
+        </tbody>
+    </table>
+
+    <h1>TDD</h1>
+
+    <p>
+        <strong>TDD</strong>, czyli <strong>Test-Driven Development</strong> jest to technika 
+        tworzenia oprogramowania, w której najpierw tworzone są testy dla nowej 
+        funkcjonalności / wymagania, a dopiero później implementowana jest sama 
+        funkcjonalność, aby testy przeszły pomyślnie. Proces ten składa się z 3 
+        głównych kroków.
+    </p>
+
+    <p>
+        TDD Mantra / Cykl TDD / Cykl Red-Green-Refactor / Cykl RGR
+    </p>
+
+    <ul>
+        <li>Napisz test (test nie powinien przejść - brak implementacji funkcjonalności),</li>
+        <li>Dodaj minimalną implementację, aby testy się powiodły,</li>
+        <li>Zrefaktoryzuj kod do najprostszej implementacji, aby spełniał oczekiwane standardy (testy przechodzą).</li>
+    </ul>
+
+    <p>Technika została stworzona przez <a href="https://pl.wikipedia.org/wiki/Kent_Beck">Kenta Becka</a>.</p>
+
+    <div class="centered-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Tdd-abstract.png" alt="tdd">
+    </div>
+
+    <h2>Zadanie (operacje na koszyku zakupowym)</h2>
+
+    <p>
+        Twoje zadanie będzie polegało na zastosowaniu techniki TDD do implementacji koszyka 
+        zakupowego. Poniżej została zaprezentowana dokumentacja w formie interfejsu. 
+        <strong>Zapamiętaj, że nie możesz zaimplementować funkcjonalności dopóki nie 
+        napiszesz testu do niej</strong>.
+    </p>
+
+<pre class="code"><code id="code" class="language-java">import java.util.List;
+
+public interface ShoppingCartOperation {
+        
+    // Dodawanie produktu do koszyka
+    boolean addProduct(String productName, int price, int quantity);
+    
+    // Usuwanie produktu z koszyka
+    boolean removeProduct(String productName);
+    
+    // Aktualizacja ilości produktu w koszyku
+    boolean updateQuantity(String productName, int newQuantity);
+    
+    // Pobieranie nazw produktów z koszyka
+    List<String> getProducts();
+
+    // Pobieranie liczby produktów znajdujących się w koszyku
+    int countProducts();
+    
+    // Pobieranie sumy cen produktów w koszyku
+    int getTotalPrice();
+    
+    // Zastosowanie kuponu rabatowego
+    boolean applyDiscountCode(String discountCode);
+    
+    // Realizacja zamówienia
+    boolean checkout();
+}
+</code></pre>    
+
+    <h1>Czy wiesz, że...</h1>
+
+    <p>
+        YAGNI (<em>ang. You Aren't Gonna Need It</em>) to zasada w programowaniu, która 
+        radzi programistom nie dodawać funkcjonalności, abstrakcji lub optymalizacji do 
+        kodu, dopóki nie są one faktycznie potrzebne. Zasada ta kieruje uwagę na aktualne 
+        wymagania i unika zbędnej złożoności oraz kosztów związanych z dodawaniem 
+        niepotrzebnych funkcji.
+    </p>
+
+    </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">0000</span> UnitTest Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="../js/menu.js" type="text/javascript"></script>
+    <script src="../js/encode-source-code.js" type="text/javascript"></script>
+</body>
+</html>
