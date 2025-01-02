@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Gądek">
+    <meta name="description" content="Laboratorium 04: Groovy i Spock Framework">
+
+    <link rel="icon" type="image/png" href="../img/unittest-logo.png">
+
+    <title>UnitTest | TiJO Lab04</title>
+
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/side-menu.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/content.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="../img/unittest-logo.png" alt="UnitTest Tomasz Gądek" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="side-menu" id="side-menu">
+            <nav class="menu">
+                <a href="lab04-spock-groovy.html">Lab 04: Groovy i Spock Framework</a>
+                <a href="mailto:t_gadek@atar.edu.pl">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title">
+        <h1>Testowanie i Jakość Oprogramowania</h1>
+        <p><strong>Laboratorium 04</strong>: Groovy i Spock Framework</p>
+    </section>
+
+    <main class="content">
+        <div class="content-details">
+
+        <h1>Groovy i Spock Framework</h1>
+        
+        <p>Matriały pomocnicze:</p>
+
+        <ul>
+            <li><a href="https://spockframework.org/spock/docs/2.3/introduction.html">Co to jest Spock Framework?</a></li>
+            <li><a href="https://groovy-lang.org/documentation.html">Dokumentacja języka Groovy</a></li>
+            <li><a href="https://spockframework.org/spock/docs/2.3/spock_primer.html">Spock Framework</a></li>
+        </ul>
+
+        <h2>Pierwsze testy</h2>
+
+        <p>Krok 1. Utwórz projekt w Java.</p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab04-create-prj.png" alt="create new project Java">
+        </div>
+
+        <p>Krok 2. Pobierz konfigurację <a href="./static/pom.xml">pom.xml</a>.</p>
+
+        <p>Krok 3. Zorganizuj strukturę projektu.</p>
+
+        <p>
+            Część produkcyjna projektu powinna znajdować się w lokalizacji 
+            <strong>/src/main/java</strong>. Część testowa projektu powinna znajdować się 
+            w lokalizacji <strong>/src/test/groovy</strong>.
+        </p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab04-struct.png" alt="structure project">
+        </div>
+
+        <p>Zorganizuj strukturę projektu identycznie, jak to zostało zobrazowane na zrzucie powyżej.</p>
+
+        <p>
+            Krok 4. Zaimplementuj proste testy. Zawartości plików <strong>PowerSpecification.groovy</strong> 
+            oraz <strong>SumSpecification.groovy</strong> zostały zaprezentowane na poniższych screenach.
+        </p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab04-power.png" alt="power implementation">
+        </div>
+
+        <div class="centered-image">
+            <img src="./static/img/lab04-sum.png" alt="sum implementation">
+        </div>
+
+        <p>Krok 5. Postaraj się uruchomić wszystkie testy.</p>
+
+        <p>Obok klasy testowej znajduje się zielony znak Run Test.</p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab04-spec.png" alt="sum specification">
+        </div>
+
+        <p>Kliknij i uruchom testy.</p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab04-run-tests.png" alt="run tests">
+        </div>
+
+        <p>
+            Po uruchomieniu wszystkich testów zacznij eksperymentować z kodem. 
+            Zmodyfikuj asercję i spraw, aby testy nie przeszły. Obserwuj, co takiego 
+            dzieje się w terminalu, gdy testy zakończą się sukcesem / porażką.
+        </p>
+
+        <h2>Zadanie</h2>
+
+        <p>
+            Po zapoznaniu się z Frameworkiem Spock wykonaj jeszcze raz zadanie umieszczone 
+            w <strong>laboratorium 3</strong>, ale tym razem wykorzystaj zdobytą wiedzę z niniejszego 
+            laboratorium. Nie zapomnij o technice TDD oraz wykorzystaniu rozproszonego 
+            systemu kontroli wersji GiT (jeszcze raz zapoznaj się z wymaganiami dotyczącymi 
+            implementacji systemu do zarządzania studentami).
+        </p>
+
+        <h1>Czy wiesz, że...</h1>
+
+        <p>
+            W środowisku harcerskim / skautów znana jest reguła, którą można zastosować także w 
+            programowaniu - <strong>zasada skauta</strong>. Zasada skauta brzmi następująco: 
+            <em>Zostaw obozowisko w stanie lepszym, niż je zastałeś(aś)</em>. W praktyce 
+            oznacza to dbanie o czystość kodu i jego strukturę. Podobnie jak podczas 
+            porządkowania lasu, drobne działania, takie jak usuwanie nieużywanych elementów 
+            czy poprawianie lokalizacji plików, sprawiają, że projekt staje się bardziej 
+            czytelny i łatwiejszy w utrzymaniu. Zasada skauta zachęca do ciągłego 
+            doskonalenia kodu, pozostawiając go w stanie lepszym dla siebie i 
+            dla innych programistów.
+        </p>
+
+        
+
+    </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">0000</span> UnitTest Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="../js/menu.js" type="text/javascript"></script>
+    <script src="../js/encode-source-code.js" type="text/javascript"></script>
+</body>
+</html>
