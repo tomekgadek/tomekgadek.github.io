@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Gądek">
+    <meta name="description" content="Laboratorium 05: Pokrycie kodu testami">
+
+    <link rel="icon" type="image/png" href="../img/unittest-logo.png">
+
+    <title>UnitTest | TiJO Lab05</title>
+
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/side-menu.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/content.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="../img/unittest-logo.png" alt="UnitTest Tomasz Gądek" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="side-menu" id="side-menu">
+            <nav class="menu">
+                <a href="lab05-code-coverage.html">Lab 05: Pokrycie kodu testami</a>
+                <a href="mailto:t_gadek@atar.edu.pl">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title">
+        <h1>Testowanie i Jakość Oprogramowania</h1>
+        <p><strong>Laboratorium 05</strong>: Pokrycie kodu testami</p>
+    </section>
+
+    <main class="content">
+        <div class="content-details">
+
+        <h1>Pokrycie kodu testami</h1>
+        
+        <p>
+            Pokrycie kodu testami (<em>ang. code coverage</em>) to metryka stosowana w testowaniu 
+            oprogramowania, która określa, jak wiele linii kodu źródłowego zostało wykrytych 
+            (skontrolowanych) przez testy automatyczne. 
+        </p>
+
+        <h2>Implementacja</h2>
+
+        <p>Umieść w pakiecie produkcyjnym implementację klasy <strong>Calculator</strong>.</p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab05-impl.png" alt="calculator">
+        </div>
+
+        <h2>Testy</h2>
+
+        <p>Umieść w pakiecie testowym implementację klasy <strong>CalculatorSpecification</strong>.</p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab05-tests.png" alt="calculator tests">
+        </div>
+
+        <h2>Testy z raportem</h2>
+
+        <p>Postaraj się uruchomić testy z raportem pokrycia kodu testami.</p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab05-coverage.png" alt="calculator code coverage">
+        </div>
+        
+        <h2>Analiza</h2>
+
+        <p>Po uruchomieniu testów zwróć uwagę na:</p>
+
+        <ul>
+            <li>tabelkę <strong>Coverage</strong>, która prezentuje pokrycie kodu (klasy, metody, linie) testami;</li>
+            <li>
+                kod klasy <strong>Calculator</strong>. Kolor <strong>czerwony</strong> wskazuje linie, 
+                które nie są pokryte testami. Kolor <strong>zielony</strong> wskazuje linie, które 
+                są pokryte testami.
+            </li>
+        </ul>
+
+        <p>Dopisz pozostałe testy i doprowadź do pokrycia <strong>100%</strong></p>
+
+        <h2>Zadanie</h2>
+
+        <p>
+            Twoje zadanie będzie polegało na implementacji operacji na bankomacie. 
+            Skorzystaj z dostarczonego interfejsu (dokumentacja). Podczas implementacji 
+            testów badaj pokrycie kodu testami.
+        </p>
+
+        <pre class="code"><code id="code" class="language-java">/**
+ * Interfejs reprezentujący bankomat.
+ */
+public interface ATMInterface {
+    
+    /**
+     * Metoda do sprawdzania salda na koncie.
+     * @param pin PIN użytkownika.
+     * @return Saldo konta użytkownika.
+     * @throws InvalidPinException Jeśli PIN jest nieprawidłowy.
+     */
+    double checkBalance(int pin) throws InvalidPinException;
+    
+    /**
+     * Metoda do wpłacania środków na konto.
+     * @param pin PIN użytkownika.
+     * @param amount Kwota do wpłacenia.
+     * @return Aktualne saldo konta po dokonaniu wpłaty.
+     * @throws InvalidPinException Jeśli PIN jest nieprawidłowy.
+     */
+    double deposit(int pin, double amount) throws InvalidPinException;
+    
+    /**
+     * Metoda do wypłacania środków z konta.
+     * @param pin PIN użytkownika.
+     * @param amount Kwota do wypłacenia.
+     * @return Aktualne saldo konta po dokonaniu wypłaty.
+     * @throws InsufficientFundsException Jeśli saldo jest niewystarczające.
+     * @throws InvalidPinException Jeśli PIN jest nieprawidłowy.
+     */
+    double withdraw(int pin, double amount) throws InsufficientFundsException, InvalidPinException;
+}
+        </code></pre> 
+
+        <h1>Czy wiesz, że...</h1>
+
+        <p>
+            System odporny na awarie to taki, który natychmiast zgłasza na swoim 
+            interfejsie każdy stan, który może wskazywać na awarię 
+            (technika <strong>Fail Fast</strong>). Systemy odporne na awarie są zwykle 
+            projektowane tak, aby zatrzymać jego normalne działanie, a nie 
+            próbować kontynuować potencjalnie wadliwy proces.
+        </p>
+
+       
+
+    </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">0000</span> UnitTest Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="../js/menu.js" type="text/javascript"></script>
+    <script src="../js/encode-source-code.js" type="text/javascript"></script>
+</body>
+</html>
