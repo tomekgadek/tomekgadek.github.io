@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Gądek">
+    <meta name="description" content="Laboratorium 13: SOLID">
+
+    <link rel="icon" type="image/png" href="../img/unittest-logo.png">
+
+    <title>UnitTest | TiJO Lab13</title>
+
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/side-menu.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/content.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="../img/unittest-logo.png" alt="UnitTest Tomasz Gądek" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="side-menu" id="side-menu">
+            <nav class="menu">
+                <a href="lab13-solid.html">Lab 13: SOLID</a>
+                <a href="mailto:t_gadek@atar.edu.pl">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title">
+        <h1>Testowanie i Jakość Oprogramowania</h1>
+        <p><strong>Laboratorium 13</strong>: SOLID</p>
+    </section>
+
+    <main class="content">
+        <div class="content-details">
+
+        <h1>SOLID</h1>
+        
+        <p>
+            Zasada SOLID to zestaw pięciu fundamentalnych zasad projektowania 
+            oprogramowania, które pomagają tworzyć systemy o większej 
+            elastyczności, rozszerzalności i łatwości w utrzymaniu.
+        </p>
+
+        <p>
+            Opis poszczególnych zasad:
+        </p>
+        <ul>
+            <li>
+                Single Responsibility Principle (SRP) – Zasada jednej 
+                odpowiedzialności: Klasa powinna mieć tylko jedną 
+                odpowiedzialność, jeden powód do zmiany.
+            </li>
+            <li>
+                Open/Closed Principle (OCP) – Zasada otwarte/zamknięte: 
+                Klasy powinny być otwarte na rozszerzenia, ale 
+                zamknięte na modyfikacje.
+            </li>
+            <li>
+                Liskov Substitution Principle (LSP) – Zasada podstawienia 
+                Liskov: Obiekty klasy bazowej powinny być zastępowalne 
+                obiektami klasy pochodnej bez wpływu na poprawność 
+                działania programu.
+            </li>
+            <li>
+                Interface Segregation Principle (ISP) – Zasada segregacji 
+                interfejsów: Klienci nie powinni być zmuszani do zależności 
+                od interfejsów, których nie używają.
+            </li>
+            <li>
+                Dependency Inversion Principle (DIP) – Zasada odwrócenia 
+                zależności: Moduły wysokopoziomowe nie powinny zależeć od 
+                modułów niskopoziomowych. Oba powinny zależeć od abstrakcji.
+            </li>
+        </ul>
+
+        <h2>Złamana zasada SRP</h2>
+
+<pre class="code"><code id="code" class="language-java">public class OrderProcessor {
+    private Order order;
+
+    public OrderProcessor(Order order) {
+        this.order = order;
+    }
+
+    public void processOrder() {
+        validateOrder();
+        saveOrderToDatabase();
+        sendConfirmationEmail();
+    }
+
+    private void validateOrder() {
+        // Kod do walidacji zamówienia
+    }
+
+    private void saveOrderToDatabase() {
+        // Kod do zapisania zamówienia w bazie danych
+    }
+
+    private void sendConfirmationEmail() {
+        // Kod do wysłania e-maila potwierdzającego
+    }
+}</code></pre>
+
+        <p>
+            Wskazówka: Utwórz klasy <strong>OrderValidator</strong>, <strong>OrderRepository</strong> oraz 
+            <strong>EmailService</strong>. Przenieś niektóre metody. Użyj wymienionych klas w 
+            prawidłowy sposób w klasie OrderProcessor.
+        </p>
+        <p>
+            Dokończ implementację klasy <strong>Order</strong>.
+        </p>
+
+        <h2>Złamana zasada OCP</h2>
+
+<pre class="code"><code id="code" class="language-java">public class Rectangle {
+    public double width;
+    public double height;
+}
+
+public class AreaCalculator {
+    public double calculateArea(Object shape) {
+        if (shape instanceof Rectangle) {
+            Rectangle rectangle = (Rectangle) shape;
+            return rectangle.width * rectangle.height;
+    	}
+     
+        return 0;
+    }
+}</code></pre>        
+
+        <p>
+            Wskazówka: Postaraj się bardziej uogólnić kod. Może wprowadzenie interfejsu 
+            <strong>Shape</strong> rozwiąże problem?
+        </p>
+
+        <h2>Złamana zasada LSP</h2>
+
+<pre class="code"><code id="code" class="language-java">public class Bird {
+    public void fly() {
+        // Kod do latania
+    }
+}
+
+public class Ostrich extends Bird {
+    @Override
+    public void fly() {
+        throw new UnsupportedOperationException("Ostriches can't fly");
+    }
+}</code></pre>
+
+        <p>
+            Wskazówka: Struś jest ptakiem, ale nie potrafi latać. Może dobrym rozwiązaniem 
+            będzie implementacja klasy abstrakcyjnej <strong>Bird</strong> oraz interfejsu 
+            <strong>FlyingBird</strong>. 
+            Ptaki nieloty mogłyby dziedziczyć po klasie abstrakcyjnej, a ptaki które dodatkowo 
+            potrafią latać mogłyby jednocześnie dziedziczyć po <strong>Bird</strong> oraz implementować 
+            interfejs <strong>FlyingBird</strong>. Dodatkowo zaproponuj klasę, która będzie reprezentowała ptaka, 
+            który potrafi latać.
+        </p>
+
+        <h2>Złamana zasada ISP</h2>
+
+<pre class="code"><code id="code" class="language-java">public interface Worker {
+	void work();
+	void eat();
+}
+
+public class HumanWorker implements Worker {
+	@Override
+	public void work() {
+    	    // Człowiek pracuje
+	}
+
+	@Override
+	public void eat() {
+    	    // Człowiek je
+	}
+}
+
+public class RobotWorker implements Worker {
+	@Override
+	public void work() {
+    	    // Robot pracuje
+	}
+
+	@Override
+	public void eat() {
+    	    throw new UnsupportedOperationException("Robots don't eat");
+	}
+}</code></pre>
+
+        <p>
+            Wskazówka: Należy zrobić porządek z interfejsem. Człowiekowi 
+            przysługuje przerwa na lunch oraz może pracować. Robot tylko 
+            pracuje. Uporządkuj implementacje.
+        </p>
+
+        <h2>Złamana zasada DIP</h2>
+
+<pre class="code"><code id="code" class="language-java">public class Database {
+    public void connect() {
+        // Kod do połączenia z bazą danych
+    }
+}
+
+public class UserRepository {
+    private Database database;
+
+    public UserRepository() {
+        this.database = new Database();
+    }
+
+    public User getUser(int userId) {
+        database.connect();
+        // Kod do pobrania użytkownika
+        return new User();
+    }
+}</code></pre>
+
+        <p>
+            Wskazówka: Do mojego repozytorium chciałbym móc wstrzykiwać dowolną 
+            implementację bazy danych. Nie chcę się ograniczać do jednej implementacji. 
+            Zrób tak, abym mógł wstrzyknąć do konstruktora <strong>UserRepository</strong> różne silniki 
+            baz danych, np. <strong>MySqlDatabase</strong>, <strong>MongoDatabase</strong>. Pomyśl o 
+            abstrakcji i spraw, aby kod był elastyczny.
+        </p>
+
+        <p>
+            Dodaj brakującą implementację klasy User.
+        </p>
+
+        <h1>Czy wiesz, że...</h1>
+
+        <p>
+            Wielu programistów umieszcza w swoich programach tzw. Easter Eggs – ukryte funkcje, 
+            wiadomości lub żarty, które są dostępne tylko po wykonaniu specjalnych czynności. 
+            Przykładem jest ukryty symulator lotu w programie Microsoft Excel 97.
+        </p>
+
+        <div class="centered-image">
+            <img src="./static/img/lab13-easter-egg.png" alt="easter egg">
+        </div>
+
+    </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">0000</span> UnitTest Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="../js/menu.js" type="text/javascript"></script>
+    <script src="../js/encode-source-code.js" type="text/javascript"></script>
+</body>
+</html>
