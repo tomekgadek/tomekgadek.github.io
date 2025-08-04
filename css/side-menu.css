@@ -39,3 +39,8 @@
     color: #333;
     background-color: #0c9d9f;
 }
+
+.side-menu a.active {
+    color: #333;
+    background-color: #0c9d9f;
+}
