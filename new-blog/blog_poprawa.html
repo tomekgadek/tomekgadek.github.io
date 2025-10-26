@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBlog - Pełny Układ Bloga</title>
+    <style>
+        /* GLOBALNE STYLE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Menu Główne */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        /* Aktywny link w menu bocznym */
+        .sidebar-link.active {
+            color: #764ba2;
+            transform: translateX(5px);
+            font-weight: 700;
+        }
+
+        /* HAMBURGER MENU - PRZYCISK */
+        .menu-toggle {
+            display: none; 
+            font-size: 2rem;
+            cursor: pointer;
+            color: #333;
+            padding: 5px;
+            background: none;
+            border: none;
+        }
+        
+        /* GŁÓWNY UKŁAD TREŚCI */
+        .main-layout {
+            display: flex;
+            gap: 40px;
+            padding: 3rem 0;
+        }
+
+        /* Sekcja Wpisów (Lista Boczna) */
+        .blog-sidebar {
+            flex: 0 0 300px; 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            height: fit-content;
+            position: sticky; 
+            top: 100px; 
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .sidebar-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        /* STYLIZACJA FILTROWANIA KATEGORII */
+        .category-filter {
+            margin-bottom: 25px;
+            position: relative; 
+        }
+
+        .category-filter label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #764ba2;
+        }
+
+        .category-filter select {
+            appearance: none; 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px; 
+            border: 1px solid #ddd;
+            background-color: #fcfcfc;
+            font-size: 1rem;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .category-filter select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        
+        .category-filter::after {
+            content: '▼';
+            position: absolute;
+            top: 40px; 
+            right: 15px;
+            font-size: 0.8rem;
+            color: #764ba2;
+            pointer-events: none; 
+        }
+        
+        /* Lista wpisów */
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar-list li {
+            margin-bottom: 15px;
+            animation: fadeIn 0.5s ease-out; 
+        }
+        
+        .sidebar-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            display: block;
+            padding: 8px 0;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .sidebar-link:hover {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+
+        /* Sekcja Szczegółów Wpisu */
+        .blog-details {
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            min-height: 60vh;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .detail-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.2;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .detail-meta {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* STYLIZACJA TREŚCI WEWNĘTRZNEJ */
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-content h3 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Blok Kodu */
+        pre {
+            background-color: #333;
+            color: #eee;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* STYLIZACJA WIDEO (NOWA SEKCJA) */
+        .video-responsive {
+            overflow: hidden;
+            /* 16:9 aspect ratio hack (9/16 * 100%) */
+            padding-bottom: 56.25%; 
+            position: relative;
+            height: 0;
+            margin: 2rem 0;
+            border-radius: 12px;
+            /* WIDOCZNY CIEŃ */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+        }
+
+        .video-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            border: none;
+            border-radius: 12px;
+        }
+        /* KONIEC STYLIZACJI WIDEO */
+        
+        /* STYLIZACJA TABELI (dla cienia i responsywności) */
+        .table-container {
+            margin: 2rem 0; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+            border-radius: 10px;
+            overflow: hidden; 
+        }
+        
+        /* STYLIZACJA TABELI */
+        .blog-content table {
+            min-width: 600px; 
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0; 
+            box-shadow: none; 
+            border-radius: 10px;
+            overflow: hidden; 
+        }
+
+        .blog-content th, .blog-content td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .blog-content th {
+            background-color: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .blog-content tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .blog-content tr:hover {
+            background-color: #f0f4ff;
+            transition: background-color 0.3s;
+        }
+
+        /* STYLIZACJA LIST */
+        .blog-content ul, .blog-content ol {
+            margin: 1.5rem 0 1.5rem 20px;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        .blog-content ul li::marker {
+            color: #764ba2;
+            font-size: 1.2em;
+        }
+        
+        /* STYLOWY LINK AKCJI */
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            margin-top: 1.5rem; 
+        }
+        
+        .action-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(45deg, #764ba2, #667eea);
+        }
+
+        .action-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .action-link:hover::after {
+            transform: translateX(5px);
+        }
+        
+        /* FOOTER */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            .blog-sidebar {
+                flex: none;
+                width: 100%;
+                position: relative;
+                top: 0;
+            }
+            .blog-details {
+                padding: 1.5rem;
+            }
+            
+            /* NOWY STYL DLA PRZEWIJALNYCH TABEL */
+            .table-container {
+                width: 100%; 
+                overflow-x: auto; 
+                -webkit-overflow-scrolling: touch; 
+                margin: 2rem 0;
+            }
+
+            .blog-content table {
+                 min-width: 600px; 
+                 width: 600px; 
+            }
+
+            /* Menu mobilne */
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px; 
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.99); 
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+                padding: 0; 
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid #eee;
+                padding: 10px 20px; 
+            }
+            
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-link {
+                padding: 0; 
+                width: 100%;
+                font-size: 1.1rem; 
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">TechBlog</div>
+                <button class="menu-toggle" id="menu-toggle">☰</button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#" class="nav-link">Główna</a></li>
+                    <li><a href="#" class="nav-link">Kategorie</a></li>
+                    <li><a href="#" class="nav-link">O nas</a></li>
+                    <li><a href="#" class="nav-link">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container main-layout">
+            <aside class="blog-sidebar">
+                <h3 class="sidebar-title">Filtruj Wpisy</h3>
+                
+                <div class="category-filter">
+                    <label for="category-select">Wybierz Kategorię:</label>
+                    <select id="category-select">
+                        <option value="all">Wszystkie Wpisy</option>
+                        <option value="AI">Sztuczna Inteligencja</option>
+                        <option value="Programowanie">Programowanie</option>
+                        <option value="Bezpieczeństwo">Cyberbezpieczeństwo</option>
+                        <option value="Blockchain">Blockchain</option>
+                    </select>
+                </div>
+
+                <h3 class="sidebar-title">Lista Wpisów</h3>
+                <ul class="sidebar-list" id="sidebar-list">
+                    </ul>
+            </aside>
+
+            <section class="blog-details" id="post-details-container">
+                <h2 class="detail-title">Witaj w TechBlog!</h2>
+                <p>Wybierz wpis z listy po lewej stronie, aby wyświetlić pełne szczegóły artykułu.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TechBlog. Wszystkie prawa zastrzeżone. Tworzone z pasją do technologii.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DANE POSTÓW Z WZBOGACONĄ TREŚCIĄ (TABELE I LISTY) ---
+        const posts = [
+            { 
+                id: 'ai1', 
+                title: 'AI 2025: Trendy i Wyzwania', 
+                category: 'AI', 
+                date: '15 września 2025', 
+                readingTime: '7 min', 
+                content: `
+                    <p>Sztuczna Inteligencja przeszła długą drogę. W 2025 roku skupiamy się na trzech kluczowych obszarach, które zdefiniują przyszłość przemysłu:</p>
+                    
+                    <h3>Kluczowe Technologie i Ryzyka (Tabela)</h3>
+                    <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Technologia</th>
+                                <th>Zastosowanie</th>
+                                <th>Poziom Ryzyka</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Generative AI</td>
+                                <td>Tworzenie treści, kodu, grafiki</td>
+                                <td>Średni</td>
+                            </tr>
+                            <tr>
+                                <td>Edge AI</td>
+                                <td>Przetwarzanie danych na urządzeniu (IoT)</td>
+                                <td>Niski</td>
+                            </tr>
+                            <tr>
+                                <td>AGI (Teoretyczne)</td>
+                                <td>Inteligencja na poziomie ludzkim</td>
+                                <td>Wysoki</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+
+                    <h3>Wideo: Przyszłość Sztucznej Inteligencji</h3>
+                    <div class="video-responsive">
+                        <iframe 
+                            src="https://www.youtube.com/embed/63_lwapPTTY" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h3>Najważniejsze Aspekty Wdrożenia (Lista Wypunktowana)</h3>
+                    <p>Aby skutecznie wdrożyć rozwiązania AI w firmie, należy zwrócić uwagę na:</p>
+                    <ul>
+                        <li>Jakość i etykę danych (Data Governance).</li>
+                        <li>Skalowalność modeli w środowisku chmurowym.</li>
+                        <li>Integrację z istniejącymi systemami ERP/CRM.</li>
+                        <li>Stałe monitorowanie wydajności i dryftu modeli.</li>
+                    </ul>
+
+                    <h3>Kod Pythona dla Przykładu</h3>
+                    <pre><code>import pandas as pd
+data = {'kolumna': [1, 2], 'wartosc': ['a', 'b']}
+df = pd.DataFrame(data)
+print(df.head())</code></pre>
+                    <a href="#" class="action-link">Pobierz Ebook o AI</a>
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop&auto=format" alt="Sztuczna Inteligencja">
+                `
+            },
+            { 
+                id: 'js1', 
+                title: 'Asynchroniczność w JS: Od Callbacks do Async/Await', 
+                category: 'Programowanie', 
+                date: '12 września 2025', 
+                readingTime: '10 min', 
+                content: `
+                    <p>Asynchroniczność jest sercem nowoczesnego JavaScriptu. Poniżej przedstawiamy, jak ewoluowały najlepsze praktyki w zarządzaniu operacjami oczekującymi:</p>
+
+                    <h3>Ewolucja Asynchroniczności (Lista Numerowana)</h3>
+                    <ol>
+                        <li>**Callbacks:** Początkowa metoda, często prowadząca do "Callback Hell".</li>
+                        <li>**Promises:** Umożliwiły czystsze zarządzanie sekwencjami (then/catch).</li>
+                        <li>**Async/Await:** Najbardziej czytelna i polecana metoda, symulująca synchroniczny kod.</li>
+                        <li>**Generatory:** Zaawansowany mechanizm kontroli iteracji.</li>
+                    </ol>
+
+                    <h3>Przykładowy Kod (Async/Await)</h3>
+                    <pre><code>async function fetchData(url) {
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    } catch (error) {
+        console.error('Błąd:', error);
+    }
+}</code></pre>
+
+                    <p>Pamiętaj, aby zawsze używać konstrukcji <code>try...catch</code> z <code>async/await</code>, aby obsłużyć potencjalne błędy. Jest to kluczowe dla stabilności aplikacji.</p>
+                    <a href="#" class="action-link">Obejrzyj Tutorial Wideo</a>
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&auto=format" alt="Programowanie">
+                `
+            },
+            { id: 'sec1', title: 'Ochrona Danych w Erze Cyfrowej', category: 'Bezpieczeństwo', date: '10 września 2025', readingTime: '6 min', content: `
+                <p>Kompleksowy przewodnik po najlepszych praktykach w dziedzinie cyberbezpieczeństwa. Chroń swoje dane!</p>
+                <h3>Wdrażanie HSTS</h3>
+                <pre><code>add_header Strict-Transport-Security "max-age=31536000;" always;</code></pre>
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&auto=format" alt="Zabezpieczenia cyfrowe">
+                <a href="#" class="action-link">Sprawdź Status Bezpieczeństwa</a>
+            `},
+            { id: 'bc1', title: 'Web3 i Decentralizacja Internetu', category: 'Blockchain', date: '8 września 2025', readingTime: '10 min', content: `
+                <p>Zrozum podstawy technologii blockchain i jej wpływ na przyszłość internetu. Smart kontrakty, DeFi i NFT.</p>
+                <h3>Smart Kontrakty (Solidity)</h3>
+                <pre><code>contract SimpleStorage { uint256 public data; }</code></pre>
+                <a href="#" class="action-link">Przewodnik po Web3</a>
+            `}
+        ];
+
+        // --- REFERENCJE DOM ---
+        const detailsContainer = document.getElementById('post-details-container');
+        const sidebarList = document.getElementById('sidebar-list');
+        const categorySelect = document.getElementById('category-select');
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        // Funkcja do renderowania treści wpisu (używa animacji)
+        function renderPostDetails(postId) {
+            const post = posts.find(p => p.id === postId);
+            
+            // Animacja wyjścia
+            detailsContainer.style.opacity = '0';
+            detailsContainer.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                if (!post) {
+                    detailsContainer.innerHTML = '<h2 class="detail-title">Witaj w TechBlog!</h2><p>Wybierz wpis z listy po lewej stronie, aby wyświetlić pełne szczegóły artykułu.</p>';
+                } else {
+                    detailsContainer.innerHTML = `
+                        <h2 class="detail-title">${post.title}</h2>
+                        <div class="detail-meta">
+                            <span>Data: ${post.date}</span>
+                            <span>|</span>
+                            <span>Kategoria: ${post.category}</span>
+                            <span>|</span>
+                            <span>Czas: ${post.readingTime}</span>
+                        </div>
+                        <div class="blog-content">
+                            ${post.content}
+                        </div>
+                    `;
+                }
+
+                // Animacja wejścia
+                detailsContainer.style.opacity = '1';
+                detailsContainer.style.transform = 'translateY(0)';
+            }, 300); 
+        }
+
+        // FUNKCJA DO RENDEROWANIA LISTY WPISÓW Z FILTROWANIEM
+        function renderPostList(filterCategory = 'all') {
+            sidebarList.innerHTML = '';
+            
+            const filteredPosts = posts.filter(post => 
+                filterCategory === 'all' || post.category === filterCategory
+            );
+
+            if (filteredPosts.length === 0) {
+                sidebarList.innerHTML = '<li>Brak wpisów w tej kategorii.</li>';
+                renderPostDetails(null); 
+                return;
+            }
+
+            filteredPosts.forEach(post => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<a href="#" class="sidebar-link" data-post-id="${post.id}">${post.title}</a>`;
+                sidebarList.appendChild(listItem);
+            });
+
+            // Ponowne dodanie event listenerów do nowych linków w liście
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    const postId = this.getAttribute('data-post-id');
+                    
+                    // Zarządzanie aktywnym stanem
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+
+                    renderPostDetails(postId);
+                    // Płynne przewijanie do góry sekcji szczegółów
+                    detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+
+            // Aktywacja pierwszego wpisu po przeładowaniu listy
+            if (filteredPosts.length > 0) {
+                const firstPostId = filteredPosts[0].id;
+                const firstLink = document.querySelector(`.sidebar-link[data-post-id="${firstPostId}"]`);
+                if (firstLink) {
+                    firstLink.classList.add('active');
+                    renderPostDetails(firstPostId);
+                }
+            } else {
+                 renderPostDetails(null);
+            }
+        }
+
+        // Obsługa zmiany filtra kategorii
+        categorySelect.addEventListener('change', function() {
+            renderPostList(this.value);
+        });
+
+        // Obsługa przełączania menu mobilnego (Hamburger)
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+
+        // Inicjalizacja strony
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPostList('all'); 
+        });
+    </script>
+</body>
+</html>
