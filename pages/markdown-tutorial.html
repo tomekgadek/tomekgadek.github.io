@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Gądek">
+    <meta name="description" content="Sample description">
+
+    <link rel="icon" type="image/png" href="../img/logo.png">
+
+    <title>TG | Markdown</title>
+
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/side-menu.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/content.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="../img/logo.png" alt="TG Home" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="side-menu" id="side-menu">
+            <nav class="menu">
+                <a href="#">#markdown</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title">
+        <h1>Tomasz Gądek | Strona Domowa</h1>
+        <p>Markdown tutorial</p>
+    </section>
+
+    <main class="content">
+        <div class="content-details">
+        <h1>Markdown</h1>
+        <p>
+            Język powstał w 2004 r. z inicjatywy Johna Grubera we współpracy z Aaronem Swartzem. Celem projektu było 
+            zaprojektowanie prostego formatu zapisu tekstu. Markdown miał być łatwy do czytania i pisania w formie 
+            surowej, a jednocześnie umożliwiać konwersję do HTML i innych formatów.
+        </p>
+
+        <p>Zastosowanie:</p>
+        <ul>
+            <li>Tworzenie dokumentacji projektów programistycznych (np. pliki README na GitHubie)</li>
+            <li>Pisanie artykułów i postów na blogach</li>
+            <li>Formatowanie notatek i dokumentów</li>
+            <li>Tworzenie prezentacji</li>
+        </ul>
+
+        <p>Pliki zapisujemy z rozszerzeniem <strong>.md</strong>. Pliki możemy tworzyć i edytować w dowolnym edytorze tekstu.</p>
+
+        <h2>Nagłówki</h2>
+
+        <p>
+            Aby utworzyć nagłówek, używamy symbolu <strong>#</strong> na początku linii. Liczba symboli <strong>#</strong> określa 
+            poziom nagłówka (od 1 do 6). Dodatkowo można stosować podkreślenie nagłówków za pomocą znaków 
+            <strong>=</strong> lub <strong>-</strong>.
+        </p>
+
+<pre class="code"><code id="code" class="language-markdown"># Nagłówek poziomu 1
+## Nagłówek poziomu 2
+### Nagłówek poziomu 3
+#### Nagłówek poziomu 4
+##### Nagłówek poziomu 5
+###### Nagłówek poziomu 6
+
+Nagłówek poziomu 1
+================= 
+
+Nagłówek poziomu 2
+-----------------
+</code></pre>
+
+    <h2>Akapit</h2>
+
+    <p>Akapit w Markdown tworzony jest przez pozostawienie pustej linii pomiędzy blokami tekstu.</p>
+
+<pre class="code"><code id="code" class="language-markdown">To jest pierwszy akapit.
+
+To jest drugi akapit.
+</code></pre>
+
+    <h2>Tekst pogrubiony</h2>
+
+    <p>
+        Aby uzyskać czcionkę pogrubioną, należy otoczyć tekst podwójnymi gwiazdkami <strong>**</strong> lub 
+        podwójnymi znakami podkreślenia <strong>__</strong>.
+    </p>
+
+<pre class="code"><code id="code" class="language-markdown">**To jest pogrubiony tekst za pomocą gwiazdek.**
+__To jest pogrubiony tekst za pomocą podkreśleń.__
+</code></pre>
+
+    <h2>Tekst pochylony (kursywa)</h2>
+
+    <p>
+        Aby uzyskać czcionkę pochyloną, należy otoczyć tekst pojedynczymi gwiazdkami <strong>*</strong> lub 
+        pojedynczymi znakami <strong>_</strong>.
+    </p>
+
+<pre class="code"><code id="code" class="language-markdown">*To jest pochylony tekst za pomocą gwiazdek.*
+_To jest pochylony tekst za pomocą podkreśleń._
+</code></pre>
+
+<h2>Tekst przekreślony</h2>
+
+    <p>
+        Aby uzyskać czcionkę przekreśloną, należy otoczyć tekst podwójnymi tyldami <strong>~~</strong>.
+    </p>
+
+<pre class="code"><code id="code" class="language-markdown">~~To jest przekreślony tekst.~~
+</code></pre>
+
+    </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">2015</span> Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="../js/menu.js" type="text/javascript"></script>
+    <script src="../js/encode-source-code.js" type="text/javascript"></script>
+</body>
+</html>
