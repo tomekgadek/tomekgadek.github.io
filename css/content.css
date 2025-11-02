@@ -104,6 +104,37 @@ ul li::marker {
     color: #0a9396;
 }
 
+blockquote {
+    border-left: 4px solid #0a9396;
+    background-color: #f4fdfd;
+    margin: 20px 0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    font-style: italic;
+    color: #333;
+    position: relative;
+}
+
+blockquote p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Opcjonalny cudzysłów dekoracyjny */
+blockquote::before {
+    content: "“";
+    font-size: 40px;
+    color: #0a9396;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-family: Georgia, serif;
+    opacity: 0.3;
+}
+
 @media (max-width: 768px) {
     .content {
         padding: 0;
