@@ -11,24 +11,3 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-a {
-    color: #0a9396;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease, border-bottom-color 0.2s ease;
-    border-bottom: 1px solid transparent;
-}
-
-a:hover {
-    color: #005f63;
-    border-bottom-color: #0a9396;
-}
-
-a:active {
-    color: #007f84;
-}
-
-a:visited {
-    color: #0b7c7f;
-}

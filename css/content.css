@@ -135,6 +135,27 @@ blockquote::before {
     opacity: 0.3;
 }
 
+.content a {
+    color: #0a9396;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.content a:hover {
+    color: #005f63;
+    border-bottom-color: #0a9396;
+}
+
+.content a:active {
+    color: #007f84;
+}
+
+.content a:visited {
+    color: #0b7c7f;
+}
+
 @media (max-width: 768px) {
     .content {
         padding: 0;
