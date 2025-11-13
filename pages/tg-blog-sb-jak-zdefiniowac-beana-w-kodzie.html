@@ -40,8 +40,52 @@
         <div class="content-details">
         <h1>Jak zdefiniować beana w kodzie?</h1>
         <p>
-            ...
+            Istnieje kilka sposobów na zdefiniowanie beana w kodzie, aby był zarządzany przez Spring Context.
         </p>
+
+        <ul>
+            <li>Wykorzystanie adnotacji (np. <strong>@Component</strong>).</li>
+            <li>Powołanie instancji w metodach klasy konfiguracyjnej (adnotacja <strong>@Bean</strong>).</li>
+            <li>Użycie XML (metoda starsza, historyczna).</li>
+        </ul>
+
+        <h2>Adnotacja @Component</h3>
+        <p>
+            Spring skanuje pakiety i automatycznie tworzy beana z każdej klasy oznaczonej jako komponent.
+        </p>
+
+        <pre class="code"><code id="code" class="language-java">
+        @Component 
+        public class DataRepository {
+            // Spring sam stworzy instancję tej klasy
+        }
+        </code></pre>
+
+        <h2>Adnotacja @Bean</h2>
+        <p>
+            Używane, gdy potrzebujemy jawnie skonfigurować beana. Metoda w 
+            klasie konfiguracyjnej oznaczonej adnotacją <strong>@Configuration</strong> zwraca 
+            instancję obiektu, który trafia do kontenera.
+        </p>
+        
+        <pre class="code"><code id="code" class="language-java">
+        @Configuration
+        public class SecurityConfig {
+    
+            @Bean // Metoda zwraca skonfigurowany obiekt
+            public PasswordEncoder encoder() {
+                return new BCryptPasswordEncoder();
+            }
+        }
+        </code></pre>
+
+        <blockquote>
+            <p>
+                Tworzenie beana polega na oznaczeniu klasy odpowiednią adnotacją 
+                (np. @Component) lub zdefiniowaniu go (adnotacja @Bean) 
+                w klasie konfiguracyjnej.
+            </p>
+        </blockquote>
     </div>
     </main>
 
