@@ -148,14 +148,6 @@ blockquote::before {
     border-bottom-color: #0a9396;
 }
 
-.content a:active {
-    color: #007f84;
-}
-
-.content a:visited {
-    color: #0b7c7f;
-}
-
 @media (max-width: 768px) {
     .content {
         padding: 0;
