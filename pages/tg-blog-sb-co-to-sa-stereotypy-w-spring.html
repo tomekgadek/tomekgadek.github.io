@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Gądek">
+    <meta name="description" content="Tomasz Gądek | Blog | Co to są stereotypy w Spring?">
+
+    <link rel="icon" type="image/png" href="../img/logo.png">
+
+    <title>TG | Co to są stereotypy w Spring?</title>
+
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/side-menu.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/content.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="../img/logo.png" alt="TG Home" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="side-menu" id="side-menu">
+            <nav class="menu">
+                <a href="#">#spring-boot</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title">
+        <h1>Tomasz Gądek | Blog</h1>
+        <p>Co to są stereotypy w Spring?</p>
+    </section>
+
+    <main class="content">
+        <div class="content-details">
+
+            <h1>Co to są stereotypy w Spring?</h1>
+            <p>
+                <strong>Stereotypy</strong> w Spring to specjalne adnotacje, które wskazują, że dana klasa powinna być
+                zarządzana przez kontener Spring jako bean. Ułatwiają one organizację kodu i
+                definiowanie ról poszczególnych komponentów w aplikacji.
+            </p>
+
+            <h2>Rodzaje stereotypów</h2>
+
+            <p>Najważniejsze stereotypy:</p>
+            <ul>
+                <li><strong>@Component</strong> - ogólny stereotyp dla komponentów Spring.</li>
+                <li><strong>@Service</strong> - oznacza klasę jako warstwę usługową (logika biznesowa).</li>
+                <li><strong>@Repository</strong> - wskazuje klasę jako warstwę dostępu do danych (DAO).</li>
+                <li><strong>@Controller</strong> - definiuje klasę jako kontroler w aplikacji webowej (MVC).</li>
+                <li><strong>@RestController</strong> - specjalizacja @Controller dla usług RESTful.</li>
+            </ul>
+
+            <blockquote>
+                <p>Stereotypy to specjalne adnotacje, które umożliwiają tworzenie beanów.</p>
+            </blockquote>
+        </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">2015</span> Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="../js/normalize-all-code-blocks.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="../js/menu.js" type="text/javascript"></script>
+    <script src="../js/encode-source-code.js" type="text/javascript"></script>
+</body>
+
+</html>
