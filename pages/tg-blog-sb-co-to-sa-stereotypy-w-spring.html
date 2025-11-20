@@ -50,17 +50,44 @@
 
             <h2>Rodzaje stereotypów</h2>
 
-            <p>Najważniejsze stereotypy:</p>
-            <ul>
-                <li><strong>@Component</strong> - ogólny stereotyp dla komponentów Spring.</li>
-                <li><strong>@Service</strong> - oznacza klasę jako warstwę usługową (logika biznesowa).</li>
-                <li><strong>@Repository</strong> - wskazuje klasę jako warstwę dostępu do danych (DAO).</li>
-                <li><strong>@Controller</strong> - definiuje klasę jako kontroler w aplikacji webowej (MVC).</li>
-                <li><strong>@RestController</strong> - specjalizacja @Controller dla usług RESTful.</li>
-            </ul>
+            <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Adnotacja / Stereotyp</th>
+                        <th>Znaczenie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>@Component</strong></td>
+                        <td>Ogólny stereotyp dla komponentów Spring.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@Service</strong></td>
+                        <td>Oznacza klasę jako warstwę usługową (logika biznesowa).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@Repository</strong></td>
+                        <td>Wskazuje klasę jako warstwę dostępu do danych.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@Controller</strong></td>
+                        <td>Definiuje klasę jako kontroler w aplikacji webowej (MVC).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@RestController</strong></td>
+                        <td>Specjalizacja @Controller dla usług (REST).</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
 
             <blockquote>
-                <p>Stereotypy to specjalne adnotacje, które umożliwiają tworzenie beanów.</p>
+                <p>
+                    Stereotypy to specjalne adnotacje, które umożliwiają tworzenie beanów oraz 
+                    nadawanie im określonych ról w aplikacji.
+                </p>
             </blockquote>
         </div>
     </main>
