@@ -56,27 +56,10 @@
             </p>
 
             <pre class="code"><code id="code" class="language-java">
-            // Prosta klasa POJO
-            class Book {
-                private String title;
-
-                public Book(String title) {
-                    this.title = title;
-                }
-            }
-
             // Bean zarządzający logiką
             @Service
             class LibraryService {
-                private List&lt;Book&gt; books;
 
-                public LibraryService() {
-                    this.books = new ArrayList&lt;&gt;();
-                }
-
-                public void addBook(String title) {
-                    books.add(new Book(title));
-                }
             }
 
             @RestController
