@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Gądek">
+    <meta name="description" content="Tomasz Gądek | Blog | Jak wstrzykiwać zależności przez konstruktor w Spring?">
+
+    <link rel="icon" type="image/png" href="../img/logo.png">
+
+    <title>TG | Jak wstrzykiwać zależności przez konstruktor w Spring?</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/side-menu.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/content.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo"><img src="../img/logo.png" alt="TG Home" /></a>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="side-menu" id="side-menu">
+            <nav class="menu">
+                <a href="#">#spring-boot</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title">
+        <h1>Tomasz Gądek | Blog</h1>
+        <p>Jak wstrzykiwać zależności przez konstruktor w Spring?</p>
+    </section>
+
+    <main class="content">
+        <div class="content-details">
+
+            <h1>Jak wstrzykiwać zależności przez konstruktor w Spring?</h1>
+
+            <p>Jest to jeden z najczęściej stosowanych i rekomendowanych sposobów wstrzykiwania zależności.</p>
+
+            <pre class="code"><code id="code" class="language-java">
+            // Bean zarządzający logiką
+            @Service
+            class LibraryService {
+
+            }
+
+            @RestController
+            public class LibraryController {
+                private final LibraryService libraryService;
+
+                @Autowired // Wstrzykiwanie zależności przez konstruktor
+                public LibraryController(LibraryService libraryService) {
+                    this.libraryService = libraryService;
+                }
+            }
+            </code></pre>
+
+            <blockquote>
+                <p>
+                    Wstrzykiwanie zależności przez konstruktor polega na dodaniu 
+                    adnotacji <strong>@Autowired</strong> nad konstruktorem klasy oraz 
+                    zdefiniowaniu wymaganych zależności w jego parametrach.
+                </p>
+            </blockquote>
+        </div>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year">2015</span> Tomasz Gądek. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="../js/normalize-all-code-blocks.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="../js/menu.js" type="text/javascript"></script>
+    <script src="../js/encode-source-code.js" type="text/javascript"></script>
+</body>
+
+</html>
