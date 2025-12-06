@@ -36,67 +36,7 @@
         <p>Strona poświęcona nowym technologiom</p>
     </section>
 
-    <main class="course-grid">
-        
-        <div class="content" data-tags="about-me" 
-            onclick="window.location.href='./pages/tg-blog-am-poznajmy-sie.html'"
-        >
-            <h3>Witaj na blogu! Poznajmy się ;)</h3>
-            <p>#about-me</p>
-        </div>
-        <div class="content" data-tags="spring-boot" 
-            onclick="window.location.href='./pages/tg-blog-sb-co-to-jest-spring-boot.html'"
-        >
-            <h3>Co to jest Spring Boot?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-co-to-jest-spring-context.html'">
-            <h3>Co to jest Spring Context?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-jak-zdefiniowac-beana-w-kodzie.html'">
-            <h3>Jak zdefiniować beana w kodzie?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-co-to-sa-stereotypy-w-spring.html'">
-            <h3>Co to są stereotypy w Spring?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-jaka-jest-roznica-miedzy-beanem-a-pojo.html'">
-            <h3>Jaka jest różnica między beanem a POJO?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-co-to-jest-mechanizm-wstrzykiwania-zaleznosci.html'">
-            <h3>Co to jest mechanizm wstrzykiwania zależności w Spring?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-jakie-mamy-sposoby-wstrzykiwania-zaleznosci-w-spring.html'">
-            <h3>Jakie mamy sposoby wstrzykiwania zależności w Spring?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-jak-wstrzykiwac-zaleznosci-przez-konstruktor-w-spring.html'">
-            <h3>Jak wstrzykiwać zależności przez konstruktor w Spring?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-jak-wstrzykiwac-zaleznosci-przez-pole-w-spring.html'">
-            <h3>Jak wstrzykiwać zależności przez pole w Spring?</h3>
-            <p>#spring-boot</p>
-        </div>
-        <div class="content" data-tags="spring-boot"
-            onclick="window.location.href='./pages/tg-blog-sb-jak-wstrzykiwac-zaleznosci-przez-wlasciwosc-w-spring.html'">
-            <h3>Jak wstrzykiwać zależności przez właściwość w Spring?</h3>
-            <p>#spring-boot</p>
-        </div>
-
-    </main>
+    <main class="course-grid"></main>
 
     <footer>
         &copy; <span id="current-year">2015</span> Tomasz Gądek. Wszelkie prawa zastrzeżone.
@@ -104,7 +44,14 @@
 
     <script src="./js/menu.js" type="text/javascript"></script>
     <script src="./js/current-year-initializer.js" type="text/javascript"></script>
+    <script src="./js/courses-data.js" type="text/javascript"></script>
+    <script src="./js/course-grid.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            const grid = new CourseGrid(coursesData, ".course-grid");
+            grid.render();
+        });
+    </script>
     <script src="./js/filter.js" type="text/javascript"></script>
-
 </body>
 </html>

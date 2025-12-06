@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('.menu a');
     const divs = document.querySelectorAll('.content');
-    const reset = document.getElementById('reset'); 
+    const reset = document.getElementById('reset');
 
     let activeTag = localStorage.getItem('activeTag');
 

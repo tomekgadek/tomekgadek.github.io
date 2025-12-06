@@ -33,16 +33,3 @@ class CourseGrid {
         });
     }
 }
-
-/*
-<main class="course-grid"></main>
-
-<script src="data.js"></script>
-<script src="CourseGrid.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const grid = new CourseGrid(coursesData, ".course-grid");
-    grid.render();
-  });
-</script>
-*/
